@@ -61,7 +61,7 @@ class loginGoogle extends StatelessWidget {
             difultButton(
               text: 'phone number',
               function: () {
-                navigateTo(context, phoneScreen());
+                navigateTo(context, PhoneScreen());
               },
             ),
           ],
@@ -98,7 +98,7 @@ class loginGoogle extends StatelessWidget {
         {
           if(value){
             // showToast(text:'success save token', error: false);
-            navigateAndFinish(ctx ,phoneScreen());
+            navigateAndFinish(ctx ,PhoneScreen());
           }
           else{
             // showToast(text:'Error while saving a token', error: false);

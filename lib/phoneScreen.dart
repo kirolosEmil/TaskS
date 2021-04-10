@@ -1,39 +1,63 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_appwwwwwwwwwwwwwwwww/Componetnts/Compo.dart';
 
-import 'Componetnts/Compo.dart';
+class PhoneScreen extends StatefulWidget {
+  @override
+  _PhoneScreenState createState() => _PhoneScreenState();
+}
 
-class phoneScreen extends StatelessWidget {
+class _PhoneScreenState extends State<PhoneScreen> {
   var phoneController = TextEditingController();
+  var codeController = TextEditingController();
+
+  bool isCode = false;
+  String verCode = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('phone Auth'),
+        title: Text('Phone Authentication'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           children: [
-            defaultTextForm(
-              controller: phoneController,
-              type: TextInputType.phone,
-              hint: 'enter Phone number',
-              title: 'Phone',
-            ),
+            if (!isCode)
+              defaultTextForm(
+                controller: phoneController,
+                type: TextInputType.phone,
+                hint: 'enter phone number',
+                title: 'Phone',
+              ),
+            if (isCode)
+              defaultTextForm(
+                controller: codeController,
+                type: TextInputType.phone,
+                hint: 'enter verification code',
+                title: 'code',
+              ),
             SizedBox(
               height: 40.0,
             ),
             difultButton(
               function: () {
-                String phone = phoneController.text;
+                if (isCode) {
+                  phoneAuthentication(codeController.text);
+                } else {
+                  String phone = phoneController.text;
 
-                if (phone.isEmpty) {
-                  return;
+                  if (phone.isEmpty) {
+
+                    return;
+                  }
+
+                  sendCode(phone);
                 }
-                sendCode(phone);
               },
-              text: 'next',
+              toUpper: true,
+              text: isCode ? 'start' : 'next',
             ),
             SizedBox(
               height: 10.0,
@@ -47,22 +71,33 @@ class phoneScreen extends StatelessWidget {
   void sendCode(String number) async {
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: '+2$number',
-      verificationCompleted: (PhoneAuthCredential credential)
-      {
-
+      verificationCompleted: (PhoneAuthCredential credential) {},
+      verificationFailed: (FirebaseAuthException e) {
+        print(e.message);
       },
-      verificationFailed: (FirebaseAuthException e)
-      {
+      codeSent: (String verificationId, int resendToken) {
+        isCode = true;
+        verCode = verificationId;
 
+        setState(() {});
+        //navigateTo(context, VerificationScreen(verificationId),);
       },
-      codeSent: (String verification , int resendToken)
-      {
-
-      },
-      codeAutoRetrievalTimeout: (String verification)
-      {
-
-      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
     );
+  }
+
+  void phoneAuthentication(String code) async
+  {
+    PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
+        verificationId: this.verCode, smsCode: code);
+
+    await FirebaseAuth.instance
+        .signInWithCredential(phoneAuthCredential)
+        .then((value) {
+      print(value.user.uid);
+    }).catchError((e)
+    {
+      print(e.toString());
+    });
   }
 }

@@ -9,6 +9,7 @@ Widget difultButton({
   @required Function function,
   @required String text,
   Color front = Colors.red,
+  bool toUpper = true,
 }) =>
     Container(
       width: double.infinity,
