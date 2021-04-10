@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "590010408868",
+    "project_id": "signin-e42bb",
+    "storage_bucket": "signin-e42bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590010408868:android:3fe53b0845e55865b56b31",
+        "android_client_info": {
+          "package_name": "com.example.flutter_appwwwwwwwwwwwwwwwww"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590010408868-a6s5ntqg3f9qpbft4n505l8p3opros7k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeC4T0pow81mFbDyUli4qhFTt5g3SvkGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590010408868-a6s5ntqg3f9qpbft4n505l8p3opros7k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
