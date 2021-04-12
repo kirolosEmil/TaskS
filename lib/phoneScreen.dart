@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_appwwwwwwwwwwwwwwwww/Componetnts/Compo.dart';
+
+import 'Componetnts/Compo.dart';
+import 'HomeScreen.dart';
 
 class PhoneScreen extends StatefulWidget {
   @override
@@ -10,57 +12,65 @@ class PhoneScreen extends StatefulWidget {
 class _PhoneScreenState extends State<PhoneScreen> {
   var phoneController = TextEditingController();
   var codeController = TextEditingController();
-
-  bool isCode = false;
-  String verCode = '';
+  bool isCode = false ;
+  String verCode ='';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Phone Authentication'),
+        title: Text('Phone SignUp'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding:  EdgeInsets.all(16.0),
         child: Column(
           children: [
-            if (!isCode)
-              defaultTextForm(
-                controller: phoneController,
-                type: TextInputType.phone,
-                hint: 'enter phone number',
-                title: 'Phone',
-              ),
-            if (isCode)
-              defaultTextForm(
-                controller: codeController,
-                type: TextInputType.phone,
-                hint: 'enter verification code',
-                title: 'code',
-              ),
+
             SizedBox(
-              height: 40.0,
+              height: 50,
+            ),
+
+            if(!isCode)
+              defultTextForm(
+                title: "Phone Number",
+                hint: 'Enter Your Number',
+                controller: phoneController,
+              ),
+
+            if(isCode)
+              SizedBox(
+                height: 100,
+              ),
+
+            if(isCode)
+              defultTextForm(
+                title: "Code",
+                hint: 'Enter Your Verification Code',
+                controller: codeController,
+              ),
+
+
+            SizedBox(
+              height: 50,
             ),
             difultButton(
+              toUpper: true,
               function: () {
-                if (isCode) {
+                if (isCode)
+                {
                   phoneAuthentication(codeController.text);
-                } else {
+                  navigateAndFinish(context, HomeScreen());
+                }
+                else
+                {
                   String phone = phoneController.text;
-
                   if (phone.isEmpty) {
-
                     return;
                   }
-
                   sendCode(phone);
                 }
               },
-              toUpper: true,
-              text: isCode ? 'start' : 'next',
-            ),
-            SizedBox(
-              height: 10.0,
+              text: isCode? "Start" :"Next",
             ),
           ],
         ),
@@ -71,23 +81,28 @@ class _PhoneScreenState extends State<PhoneScreen> {
   void sendCode(String number) async {
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: '+2$number',
-      verificationCompleted: (PhoneAuthCredential credential) {},
-      verificationFailed: (FirebaseAuthException e) {
+      verificationCompleted: (PhoneAuthCredential credential)
+      {
+
+      },
+      verificationFailed: (FirebaseAuthException e)
+      {
         print(e.message);
       },
-      codeSent: (String verificationId, int resendToken) {
+      codeSent: (String verificationId , int resendToken)
+      {
         isCode = true;
-        verCode = verificationId;
-
+        verCode = verificationId ;
         setState(() {});
-        //navigateTo(context, VerificationScreen(verificationId),);
+      } ,
+      codeAutoRetrievalTimeout: (String verificationId)
+      {
+
       },
-      codeAutoRetrievalTimeout: (String verificationId) {},
     );
   }
 
-  void phoneAuthentication(String code) async
-  {
+  void phoneAuthentication(String code) async {
     PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
         verificationId: this.verCode, smsCode: code);
 
@@ -100,4 +115,5 @@ class _PhoneScreenState extends State<PhoneScreen> {
       print(e.toString());
     });
   }
+
 }

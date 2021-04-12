@@ -32,8 +32,9 @@ class loginGoogle extends StatelessWidget {
                     radius: 20,
                     backgroundColor: defultColor,
                     child: Image(
-                      image: AssetImage('assets/images/google-glass-logo.png'),
-                      height: 24,
+                      image: AssetImage('assets/images/google.png'),
+                      height: 23,
+                      width: 23,
                       color: Colors.white,
                     ),
                   ),
@@ -48,6 +49,9 @@ class loginGoogle extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 20,
                     backgroundColor: defultColor,
+                    child: Icon(
+                      Icons.exit_to_app
+                    ),
                     ),
                   ),
                 SizedBox(
