@@ -62,11 +62,14 @@ class loginGoogle extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            difultButton(
-              text: 'phone number',
-              function: () {
-                navigateTo(context, PhoneScreen());
-              },
+            Padding(
+              padding: const EdgeInsets.only(left: 15 , right: 15),
+              child: difultButton(
+                text: 'phone number',
+                function: () {
+                  navigateTo(context, PhoneScreen());
+                },
+              ),
             ),
           ],
         ),
@@ -78,6 +81,8 @@ class loginGoogle extends StatelessWidget {
   {
     await  googleSignIn.signOut();
   }
+
+
 
   Future<void> handleSignIn(ctx) async {
     await googleSignIn.signIn().then((value) async

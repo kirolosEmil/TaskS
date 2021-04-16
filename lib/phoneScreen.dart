@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'Componetnts/Compo.dart';
-import 'HomeScreen.dart';
 
 class PhoneScreen extends StatefulWidget {
   @override
@@ -59,7 +58,6 @@ class _PhoneScreenState extends State<PhoneScreen> {
                 if (isCode)
                 {
                   phoneAuthentication(codeController.text);
-                  navigateAndFinish(context, HomeScreen());
                 }
                 else
                 {

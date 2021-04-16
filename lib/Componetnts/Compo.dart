@@ -1,7 +1,7 @@
+import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 Widget difultButton({
   double radius = 18,
@@ -11,82 +11,72 @@ Widget difultButton({
   bool toUpper = true,
 }) =>
     Container(
-      width: double.infinity,
-      height: 50,
+      width: 160,
+      height: 40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
-        color: Colors.black12,
+        color: Colors.blueAccent,
       ),
       child: FlatButton(
         onPressed: function,
         child: Text(
           text.toUpperCase(),
-          style: TextStyle(
-            color: front,
-          ),
+          style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
     );
 
-void buildProgress({context, text, bool error}) =>
-    showDialog(
+void buildProgress({context, text, bool error}) => showDialog(
       context: context,
-      builder: (context) =>
-          AlertDialog(
-            content: Column(mainAxisSize: MainAxisSize.min, children: [
-              Column(
-                children: [
-                  Row(children: [
-                    if (!error) CircularProgressIndicator(),
-                    if (!error)
-                      SizedBox(
-                        width: 20,
-                      ),
-                    Expanded(child: Text(text)),
-                  ]),
-                  if (error)
-                    SizedBox(
-                      height: 20,
-                    ),
-                  if (error)
-                    difultButton(
-                        function: () {
-                          Navigator.pop(context);
-                        },
-                        text: 'close'),
-                ],
-              ),
-            ]),
+      builder: (context) => AlertDialog(
+        content: Column(mainAxisSize: MainAxisSize.min, children: [
+          Column(
+            children: [
+              Row(children: [
+                if (!error) CircularProgressIndicator(),
+                if (!error)
+                  SizedBox(
+                    width: 20,
+                  ),
+                Expanded(child: Text(text)),
+              ]),
+              if (error)
+                SizedBox(
+                  height: 20,
+                ),
+              if (error)
+                difultButton(
+                    function: () {
+                      Navigator.pop(context);
+                    },
+                    text: 'close'),
+            ],
           ),
+        ]),
+      ),
     );
 
-Widget headText(String text) =>
-    Text(
+Widget headText(String text) => Text(
       text,
       style: TextStyle(fontSize: 23, color: Colors.black),
     );
 
-void navigateTo(context, widget) =>
-    Navigator.push(
+void navigateTo(context, widget) => Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => widget),
     );
 
-void navigateaAndFinish(context, widget) =>
-    Navigator.pushAndRemoveUntil(
-        context, MaterialPageRoute(builder: (context) => widget), (
-        route) => false);
+void navigateaAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
+    context, MaterialPageRoute(builder: (context) => widget), (route) => false);
 
-Widget Captions(String text) =>
-    Text(
+Widget Captions(String text) => Text(
       text,
       style: TextStyle(
         fontSize: 16,
       ),
     );
 
-Widget detailsText(String text) =>
-    Text(
+Widget detailsText(String text) => Text(
       text,
       style: TextStyle(
         fontSize: 14,
@@ -157,6 +147,40 @@ Widget difultButtonWhite({
       ),
     );
 
+Widget buildProfileItem(@required title, @required function) => Expanded(
+      child: InkWell(
+        onTap: function,
+        child: Container(
+          height: 140,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 10,
+                  blurRadius: 15,
+                ),
+              ]),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 30,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                title,
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+
 Widget defaultTextForm({
   String title,
   String hint = '',
@@ -194,8 +218,6 @@ Widget defaultTextForm({
       ),
     );
 
-
-
 SharedPreferences preferences;
 
 Future<void> initpref() async {
@@ -211,13 +233,126 @@ String getToken() => preferences.getString('token');
 void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
     context,
     MaterialPageRoute(builder: (context) => widget),
-        (Route<dynamic> route) => false);
+    (Route<dynamic> route) => false);
 
-// void showToast({@required text, @required error}) => Fluttertoast.showToast(
-//     msg: text.toString(),
-//     toastLength: Toast.LENGTH_SHORT,
-//     gravity: ToastGravity.BOTTOM,
-//     timeInSecForIosWeb: 1,
-//     backgroundColor: error ? Colors.red : Colors.green,
-//     textColor: Colors.white,
-//     fontSize: 16.0);
+Widget SowrList1(
+        @required image, @required String title, @required Function function) =>
+    InkWell(
+      onTap: function,
+      child: Container(
+        height: 180,
+        width: 280,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image(
+              image: AssetImage('$image'),
+              width: 200,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              title,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+      ),
+    );
+
+Widget SowrList2(@required image, @required String title2,
+        @required String title, String title3, @required Function function) =>
+    InkWell(
+      onTap: function,
+      child: Container(
+        height: 200,
+        width: 130,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: Text(
+                title2,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Image.network(
+              ('$image'),
+              width: 200,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              title,
+              style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              title3,
+              style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+    );
+
+Widget buildImage(image) => Image.network(
+      ('$image'),
+      fit: BoxFit.cover,
+      width: 370,
+      height: 250,
+    );
+
+Widget buildText(
+        BuildContext context,
+        @required String title1,
+        @required String Price,
+        @required String desception,
+        @required String Title_Button) =>
+    Theme(
+      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+      child: ExpansionTile(
+        childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
+        title: Center(
+          child: Column(
+            children: [
+              Text(
+                title1,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+              ),
+              Text(
+                Price,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+              ),
+            ],
+          ),
+        ),
+        children: [
+          Text(
+            desception,
+            style: TextStyle(fontSize: 18, height: 1.4),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          difultButton(function: () {}, text: Title_Button)
+        ],
+      ),
+    );
+
