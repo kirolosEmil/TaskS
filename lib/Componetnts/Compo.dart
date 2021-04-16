@@ -312,47 +312,71 @@ Widget SowrList2(@required image, @required String title2,
       ),
     );
 
-Widget buildImage(image) => Image.network(
-      ('$image'),
-      fit: BoxFit.cover,
-      width: 370,
-      height: 250,
-    );
 
-Widget buildText(
-        BuildContext context,
-        @required String title1,
-        @required String Price,
-        @required String desception,
-        @required String Title_Button) =>
-    Theme(
-      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-      child: ExpansionTile(
-        childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
-        title: Center(
-          child: Column(
-            children: [
-              Text(
-                title1,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-              ),
-              Text(
-                Price,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
-              ),
-            ],
+
+
+
+Widget CradTile( BuildContext context,image , @required String title1 , @required String Price , @required String desception , @required String Title_Button ) => Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: Colors.white,
+    ),
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(5.0),
+        ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                GestureDetector(
+                  child: Image.network(
+                    ('$image'),
+                    fit: BoxFit.cover,
+                    width: 370,
+                    height: 250,
+                    )
+                  ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                    Theme(
+                      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                      child: ExpansionTile(
+                        childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
+                        title: Center(
+                          child: Column(
+                            children: [
+                              Text(
+                                title1,
+                                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                Price,
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+                              ),
+                            ],
+                          ),
+                        ),
+                        children: [
+                          Text(
+                            desception,
+                            style: TextStyle(fontSize: 18, height: 1.4),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          difultButton(function: () {}, text: Title_Button)
+                        ],
+                      ),
+                ),
+              ],
+            ),
           ),
         ),
-        children: [
-          Text(
-            desception,
-            style: TextStyle(fontSize: 18, height: 1.4),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          difultButton(function: () {}, text: Title_Button)
-        ],
-      ),
-    );
-
+      ],
+    ));
