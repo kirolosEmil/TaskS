@@ -15,7 +15,7 @@ class menus extends StatelessWidget {
             child: InkWell(
               onTap: (){},
               child: Icon(
-                Icons.add_shopping_cart,
+                Icons.shopping_cart,
               ),
             ),
           )
