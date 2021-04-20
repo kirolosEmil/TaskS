@@ -240,8 +240,8 @@ Widget SowrList1(
     InkWell(
       onTap: function,
       child: Container(
-        height: 180,
-        width: 280,
+        height: 150,
+        width: 300,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -252,7 +252,7 @@ Widget SowrList1(
           children: [
             Image(
               image: AssetImage('$image'),
-              width: 200,
+              width: 220,
               height: 100,
               fit: BoxFit.cover,
             ),
@@ -340,10 +340,17 @@ Widget SowrList2(@required image, @required String title2,
                       ('$image'),
                       fit: BoxFit.cover,
                       width: 370,
-                      height: 250,
-                    )),
-                    SizedBox(
-                      height: 10,
+                      height: 320,
+                    ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Container(
+                        height: 1,
+                        width: 350,
+                        color: Colors.grey[300],
+                      ),
                     ),
                     Theme(
                       data: Theme.of(context)
