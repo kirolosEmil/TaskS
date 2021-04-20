@@ -312,40 +312,42 @@ Widget SowrList2(@required image, @required String title2,
       ),
     );
 
-
-
-
-
-Widget CradTile( BuildContext context,image , @required String title1 , @required String Price , @required String desception , @required String Title_Button ) => Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-      color: Colors.white,
-    ),
-    child: Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(5.0),
+  Widget CradTile(
+        BuildContext context,
+        image,
+        @required String title1,
+        @required String Price,
+        @required String desception,
+        @required String Title_Button) =>
+    Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
         ),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(5),
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                GestureDetector(
-                  child: Image.network(
-                    ('$image'),
-                    fit: BoxFit.cover,
-                    width: 370,
-                    height: 250,
-                    )
-                  ),
-                SizedBox(
-                  height: 10,
-                ),
-
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                        child: Image.network(
+                      ('$image'),
+                      fit: BoxFit.cover,
+                      width: 370,
+                      height: 250,
+                    )),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Theme(
-                      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                      data: Theme.of(context)
+                          .copyWith(dividerColor: Colors.transparent),
                       child: ExpansionTile(
                         childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
                         title: Center(
@@ -353,11 +355,13 @@ Widget CradTile( BuildContext context,image , @required String title1 , @require
                             children: [
                               Text(
                                 title1,
-                                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                                style: TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.w500),
                               ),
                               Text(
                                 Price,
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w300),
                               ),
                             ],
                           ),
@@ -373,10 +377,140 @@ Widget CradTile( BuildContext context,image , @required String title1 , @require
                           difultButton(function: () {}, text: Title_Button)
                         ],
                       ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
+          ],
+        ));
+
+
+
+Widget CradTile2(
+    BuildContext context,
+    image,
+    @required String title1,
+    @required String Price,
+    @required String desception,
+    @required String Title_Button) =>
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
           ),
-        ),
-      ],
-    ));
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      Theme(
+                        data: Theme.of(context)
+                            .copyWith(dividerColor: Colors.transparent),
+                        child: ExpansionTile(
+                          childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
+                          title: Center(
+                           child: Row(
+                             children: [
+                               Padding(
+                                 padding: const EdgeInsets.only(bottom: 5),
+                                 child: GestureDetector(
+                                     child: Image.network(
+                                       ('$image'),
+                                       fit: BoxFit.cover,
+                                       width: 100,
+                                       height: 100,
+                                     ),),
+                               ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Column(
+                                   children: [
+                                     Text(
+                                       title1,
+                                       style: TextStyle(
+                                           fontSize: 20, fontWeight: FontWeight.w500),
+                                     ),
+                                     SizedBox(height: 10,),
+                                     Padding(
+                                       padding: const EdgeInsets.only(right: 60),
+                                       child: Text(
+                                         Price,
+                                         style: TextStyle(
+                                             fontSize: 20, fontWeight: FontWeight.w300),
+                                       ),
+                                     ),
+                                   ],
+                               ),
+                                ),
+                             ],
+                           ),
+                          ),
+                          children: [
+                            Center(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 5 , bottom: 5),
+                                child: Text(
+                                  desception,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 18, height: 1.4),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            GestureDetector(
+                                child: Image.network(
+                                  ('$image'),
+                                  fit: BoxFit.cover,
+                                  width: 370,
+                                  height: 250,
+                                )),
+                            SizedBox(
+                              height: 10,
+                            ),
+                           Padding(
+                             padding: const EdgeInsets.only(top: 20, bottom: 15),
+                             child: Row(
+                               children: [
+                                 Padding(
+                                   padding: const EdgeInsets.only(left: 40),
+                                   child: difultButton(function: () {}, text: Title_Button),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(left: 20),
+                                   child: Column(
+                                     children: [
+                                       InkWell(
+                                         onTap: (){},
+                                           child: Icon(Icons.favorite_border)),
+                                       Text(
+                                         'Add to Favourites',
+                                         style: TextStyle(fontSize: 10, height: 1.5),
+                                       ),
+                                     ],
+                                   ),
+                                 )
+                               ],
+                             ),
+                           )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          )),
+    );
+

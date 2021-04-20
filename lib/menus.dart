@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appwwwwwwwwwwwwwwwww/Componetnts/Compo.dart';
-import 'package:flutter_appwwwwwwwwwwwwwwwww/tagroba.dart';
+import 'package:flutter_appwwwwwwwwwwwwwwwww/Juice Lucy.dart';
+import 'package:flutter_appwwwwwwwwwwwwwwwww/tagroba%202.dart';
 
 class menus extends StatelessWidget {
   List<Widget> itemsData = [];
@@ -45,13 +46,13 @@ class menus extends StatelessWidget {
                   children: <Widget>[
                     SowrList1(('assets/images/chiken sandwiches.jpg'),
                         'chicken sandwiches', () {
-                      navigateTo(context, TextTilePage());
+                      navigateTo(context, Sandwich());
                     }),
                     SizedBox(
                       width: 10,
                     ),
                     SowrList1(('assets/images/Family Meals.jpg'),
-                        'Family Meals', () {}),
+                        'Family Meals', () {navigateTo(context, tagroba());}),
                     SizedBox(
                       width: 10,
                     ),
@@ -204,7 +205,7 @@ class menus extends StatelessWidget {
                 height: 10,
               ),
               CradTile(
-                context,
+                  context,
                 'https://www.justataste.com/wp-content/uploads/2013/01/beer-battered-onion-rings.jpg',
                 'Onion Rings',
                 '50LE',
