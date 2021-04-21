@@ -252,7 +252,7 @@ Widget SowrList1(
           children: [
             Image(
               image: AssetImage('$image'),
-              width: 220,
+              width: 230,
               height: 100,
               fit: BoxFit.cover,
             ),
