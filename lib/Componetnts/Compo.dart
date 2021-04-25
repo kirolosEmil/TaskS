@@ -1,4 +1,5 @@
 import 'package:expansion_tile_card/expansion_tile_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -343,7 +344,6 @@ Widget SowrList2(@required image, @required String title2,
                       height: 320,
                     ),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Container(
@@ -390,8 +390,8 @@ Widget SowrList2(@required image, @required String title2,
               ),
             ),
           ],
-        ));
-
+        )
+    );
 
 
 Widget CradTile2(
@@ -430,11 +430,14 @@ Widget CradTile2(
                                Padding(
                                  padding: const EdgeInsets.only(bottom: 5),
                                  child: GestureDetector(
-                                     child: Image.network(
-                                       ('$image'),
-                                       fit: BoxFit.cover,
-                                       width: 100,
-                                       height: 100,
+                                     child: ClipRRect(
+                                       borderRadius: BorderRadius.circular(10),
+                                       child: Image.network(
+                                         ('$image'),
+                                         fit: BoxFit.cover,
+                                         width: 100,
+                                         height: 100,
+                                       ),
                                      ),),
                                ),
                                 Padding(
@@ -476,11 +479,14 @@ Widget CradTile2(
                               height: 10,
                             ),
                             GestureDetector(
-                                child: Image.network(
-                                  ('$image'),
-                                  fit: BoxFit.cover,
-                                  width: 370,
-                                  height: 250,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(5),
+                                  child: Image.network(
+                                    ('$image'),
+                                    fit: BoxFit.cover,
+                                    width: 370,
+                                    height: 250,
+                                  ),
                                 )),
                             SizedBox(
                               height: 10,

@@ -37,6 +37,7 @@ class menus extends StatelessWidget {
                   ),
                 ),
               ),
+              // __________________________ Second List ___________________
               Container(
                 margin: EdgeInsets.symmetric(vertical: 20),
                 height: 180,
@@ -44,10 +45,11 @@ class menus extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   physics: BouncingScrollPhysics(),
                   children: <Widget>[
-                    SowrList1(('assets/images/chiken sandwiches.jpg'),
-                        'chicken sandwiches', () {
-                      navigateTo(context, Sandwich());
-                    }),
+                    SowrList1((
+                        'assets/images/chiken sandwiches.jpg'),
+                        'chicken sandwiches',
+                            () {navigateTo(context, Sandwich());}
+                            ),
                     SizedBox(
                       width: 10,
                     ),
@@ -86,6 +88,7 @@ class menus extends StatelessWidget {
                   ),
                 ),
               ),
+              // __________________________ Second List ___________________
               Container(
                 margin: EdgeInsets.symmetric(vertical: 20),
                 height: 220,
@@ -160,6 +163,7 @@ class menus extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
+              // ___________________ Card Tiles.... __________________
               CradTile(
                 context,
                 'https://www.justataste.com/wp-content/uploads/2013/01/beer-battered-onion-rings.jpg',
@@ -224,7 +228,7 @@ class menus extends StatelessWidget {
                 'Add To Cart',
               ),
               SizedBox(
-                height: 10,
+                height: 60,
               ),
             ],
           ),
